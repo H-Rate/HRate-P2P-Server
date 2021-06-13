@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>HRate</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='/views/homepage/main.css'>
+  <script src="https://cdn.socket.io/4.1.2/socket.io.js" crossorigin="anonymous"></script>
+  <script>
+        localStorage.debug = 'socket.io-client:socket'
+  </script>
+  <script src='/views/homepage/main.js'></script>
+</head>
+<body>
+  <h1>HRate</h1>
+  <button id='toggle-server-button' onclick="toggleServer()">Start Server</button>
+  <h4>Heart Rate</h4>
+  <h3 id='bpm-text'>- BPM</h3>
+  <p id='error'></p>
+</body>
+</html>
