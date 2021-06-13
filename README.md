@@ -4,15 +4,16 @@
 npm i
 
 ### Run
-**Start Server**
+#### Start Server
 `node index.js`
 
-**Open Web Client**
+#### Open Web Client
 `localhost:6006`
 
 Click on Start Server
 
-**Open App or Device Simulator**
+#### Open App or Device Simulator**
+
 Open and select find server
 
 *or*
