@@ -12,7 +12,7 @@ npm i
 
 Click on Start Server
 
-#### Open App or Device Simulator**
+#### Open App or Device Simulator
 
 Open and select find server
 
