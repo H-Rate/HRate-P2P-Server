@@ -1,6 +1,23 @@
 var isServerRunning = false;
 var socket = null;
 
+window.onload = () => {
+  fetch('/status')
+  .then(res => res.json())
+  .then(setStatus)
+  .catch(console.warn)
+}
+
+function setStatus(json) {
+  console.log(json)
+  if (json.bonjour === 'running' && json.socketIO === 'running') {
+    isServerRunning = true
+    initSocketIO()
+  }
+  
+  updateToggleServerHTML()
+}
+
 const toggleServer = async () => {
   console.log("toggle server");
   let res = true;
@@ -26,7 +43,7 @@ const toggleServer = async () => {
 
 const startNodeServer = () => {
   console.log("starting server");
-  return fetch("http://localhost:6006/startServer")
+  return fetch("/startServer")
     .then(function (response) {
       return response.json();
     })
@@ -40,7 +57,7 @@ const startNodeServer = () => {
 };
 
 const stopNodeServer = () => {
-  return fetch("http://localhost:6006/stopServer")
+  return fetch("/stopServer")
     .then(function (response) {
       return response.json();
     })
@@ -55,7 +72,7 @@ const stopNodeServer = () => {
 const initSocketIO = () => {
   if (socket) stopSocketIO();
 
-  socket = io("ws://localhost:6006", { withCredentials: false });
+  socket = io("ws://localhost:23234", { withCredentials: false });
 
   socket.on("connect", () => {
     console.log("Socket connected");

@@ -1,6 +1,6 @@
 var bonjour = require('bonjour')()
  
-bonjour.find({ type: 'stream' }, function (service) {
+bonjour.find({ type: 'http' }, function (service) {
   console.log('Found an HTTP server:', service)
 
   if (service.name === "hrate_server") {
@@ -21,7 +21,7 @@ function openSocket(url, port) {
     console.log('emitting updates')
 
     setInterval(() => {
-      socket.emit("update", { val: Math.round(Math.random() * 100) })
+      socket.emit("update", { payload: Math.round(Math.random() * 100) })
     }, 500)
   });
 

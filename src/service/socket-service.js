@@ -1,9 +1,10 @@
 const socketIO = require("socket.io");
 var io = null
+var status = "stopped"
 
 function initSocketService(httpServer, onUserConnectionCallback, onUpdateCallback) {
   console.log("start socket server")
-  if (io) destroySocketServer()
+  if (io) return
 
   io = socketIO(httpServer, {
     cors: {
@@ -22,15 +23,19 @@ function initSocketService(httpServer, onUserConnectionCallback, onUpdateCallbac
       onUpdateCallback(payload)
     });
   });
+
+  status = "running"
 }
 
 function destroySocketServer() {
   console.log("stop socket server")
-  if (io) io.disconnectSockets();
+  if (io) io.close()
   io = null
+  status = "stopped"
 }
 
 module.exports = {
   start: initSocketService,
-  stop: destroySocketServer
+  stop: destroySocketServer,
+  status: () => status
 }

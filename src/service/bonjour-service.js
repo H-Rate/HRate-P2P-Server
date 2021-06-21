@@ -1,16 +1,23 @@
 const bonjour = require('bonjour')()
+var service = null
+var status = "stopped"
 
 function startBonjourService(host, name, type, port) {
   console.log("start bonjour server")
-  bonjour.publish({ host, name, type, port })
+  if (service != null) return
+
+  service = bonjour.publish({ host, name, type, port })
+  status = "running"
 }
 
 function stopBonjourService(callback) {
   console.log("stop bonjour server")
-  bonjour.unpublishAll(callback)
+  if (service != null) service.stop(callback)
+  status = "stopped"
 }
 
 module.exports = {
   start: startBonjourService,
-  stop: stopBonjourService
+  stop: stopBonjourService,
+  status: () => status
 }
