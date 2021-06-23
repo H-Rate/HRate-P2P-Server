@@ -80,7 +80,7 @@ const initSocketIO = () => {
 
   socket.on("update", (event) => {
     console.log("update", event);
-    updateBPMHTML(event.val);
+    updateBPMHTML(event.payload);
   });
 
   socket.on("connect_error", (err) => console.log(err));

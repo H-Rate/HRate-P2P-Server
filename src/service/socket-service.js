@@ -2,20 +2,15 @@ const socketIO = require("socket.io");
 var io = null
 var status = "stopped"
 
-function initSocketService(httpServer, onUserConnectionCallback, onUpdateCallback) {
+function initSocketService(socketPort, onUserConnectionCallback, onUpdateCallback) {
   console.log("start socket server")
   if (io) return
 
-  io = socketIO(httpServer, {
-    cors: {
-      origin: "http://localhost:6006",
-      methods: ["GET", "POST"]
-    }
-  });
+  io = socketIO(socketPort);
 
   updateCallback = onUpdateCallback
 
-  io.on("connection", (socket) => {
+  io.on("connection", socket => {
     onUserConnectionCallback()
 
     socket.on("update", payload => {

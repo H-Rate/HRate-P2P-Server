@@ -5,7 +5,8 @@ const path = require('path');
 const bonjourService = require('./src/service/bonjour-service')
 const socketIOService = require('./src/service/socket-service');
 
-const port = 23234
+const serverPort = 23235
+const socketPort = 23234
 
 let app = express();
 let server = http.createServer(app)
@@ -24,8 +25,8 @@ app.get('/startServer', function(req, res) {
   const newUser = () => console.log("new user")
   const onUpdate = p => console.log("update", p)
 
-  bonjourService.start("hrate_server.local", "hrate_server", "http", port)
-  socketIOService.start(server, newUser, onUpdate)
+  bonjourService.start("hrate_server.local", "hrate_server", "http", socketPort)
+  socketIOService.start(socketPort, newUser, onUpdate)
 
   res.json({ success: true })
 })
@@ -37,6 +38,6 @@ app.get('/stopServer', function(req, res) {
   res.json({ success: true })
 })
 
-server.listen(port, () => {
-  console.log("started server on port", port)
+server.listen(serverPort, () => {
+  console.log("started server on port", serverPort)
 });
