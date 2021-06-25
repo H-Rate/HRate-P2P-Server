@@ -1,9 +1,18 @@
 {
+  "scripts": {
+    "server": "node server.js",
+    "device-sim": "node device-simulator.js",
+    "tests": "jest"
+  },
   "dependencies": {
     "bonjour": "^3.5.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "socket.io": "2.x.x",
     "socket.io-client": "2.x.x"
+  },
+  "devDependencies": {
+    "jest": "^27.0.5",
+    "supertest": "^6.1.3"
   }
 }
