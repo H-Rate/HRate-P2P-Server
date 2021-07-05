@@ -1,4 +1,6 @@
 {
+  "name": "hrate-server",
+  "bin": "./server.js",
   "scripts": {
     "server": "node server.js",
     "device-sim": "node device-simulator.js",
@@ -14,5 +16,11 @@
   "devDependencies": {
     "jest": "^27.0.5",
     "supertest": "^6.1.3"
+  },
+  "pkg": {
+    "scripts": "",
+    "assets": "public/**/*",
+    "targets": [ "node14-macos-arm64" ],
+    "outputPath": "dist"
   }
 }
