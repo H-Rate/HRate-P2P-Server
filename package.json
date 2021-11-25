@@ -3,12 +3,13 @@
   "main": "./main.ts",
   "scripts": {
     "start": "electron ./build/app.js",
-    "build": "./node_modules/.bin/tsc",
+    "build": "./node_modules/.bin/tsc && cp -r ./public ./build/",
     "device-sim": "node device-simulator.js",
     "tests": "jest",
     "watch": "nodemon"
   },
   "devDependencies": {
+    "@types/config": "^0.0.40",
     "@types/electron": "^1.6.10",
     "electron": "^16.0.1",
     "jest": "^27.0.5",
@@ -23,5 +24,10 @@
       "node14-macos-arm64"
     ],
     "outputPath": "dist"
+  },
+  "dependencies": {
+    "@types/bonjour": "^3.5.9",
+    "bonjour": "^3.5.0",
+    "config": "^3.3.6"
   }
 }

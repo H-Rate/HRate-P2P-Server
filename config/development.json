@@ -1,0 +1,8 @@
+{
+  "bonjour":{
+    "host": "hrate_server.local",
+    "name": "hrate_server",
+    "type": "http"
+  },
+  "port": 23234
+}
